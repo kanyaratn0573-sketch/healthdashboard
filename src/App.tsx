@@ -20,7 +20,6 @@ import {
   BarChart3,
   Table as TableIcon,
   HelpCircle,
-  ExternalLink,
   Heart
 } from 'lucide-react';
 
@@ -264,16 +263,6 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-4">
-            <a
-              href={`https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-slate-600 hover:text-emerald-700 transition-colors"
-            >
-              <span>เปิด Google Sheet</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <span className="text-slate-300">|</span>
             <span>มาตรฐานกรมควบคุมโรค กระทรวงสาธารณสุข</span>
           </div>
         </div>

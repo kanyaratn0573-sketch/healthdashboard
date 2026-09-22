@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshCw, Database, UserCheck, HeartPulse, FileSpreadsheet, Sparkles, AlertCircle } from 'lucide-react';
+import { RefreshCw, UserCheck, HeartPulse, Sparkles } from 'lucide-react';
 import { SheetConnectionState } from '../services/sheetService';
 
 interface HeaderProps {
@@ -13,7 +13,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   connection,
   onRefresh,
-  onOpenSheetModal,
   onOpenGuideModal,
   isRefreshing,
 }) => {
@@ -80,63 +79,18 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Right: Google Sheet Connection Card & Action Buttons */}
-        <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 shrink-0">
-          {/* Sheet ID Badge Card */}
-          <div className="w-full sm:w-auto p-3 rounded-2xl bg-gradient-to-br from-slate-50 to-pink-50/50 border border-pink-100/80 shadow-2xs">
-            <div className="flex items-center justify-between gap-3 text-xs">
-              <div className="flex items-center gap-1.5 text-slate-700 font-medium">
-                <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
-                <span>Google Sheet ID:</span>
-              </div>
-              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold ${
-                connection.isConnected 
-                  ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                  : 'bg-amber-100 text-amber-800 border border-amber-300'
-              }`}>
-                {connection.isConnected ? 'เชื่อมโยงข้อมูลแล้ว' : 'รอการเชื่อมต่อ'}
-              </span>
-            </div>
-
-            <div className="mt-1.5 flex items-center justify-between gap-2">
-              <code className="text-[11px] font-mono bg-white px-2 py-1 rounded border border-slate-200 text-slate-800 truncate max-w-[210px]" title={connection.sheetId}>
-                {connection.sheetId}
-              </code>
-              <span className="text-xs text-slate-600 font-medium">
-                ({connection.recordCount} ราย)
-              </span>
-            </div>
-
-            {connection.error && (
-              <div className="mt-1.5 text-[11px] text-amber-700 flex items-start gap-1">
-                <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5 text-amber-600" />
-                <span className="line-clamp-1">ใช้ข้อมูลสำรองที่ซิงค์จาก Sheet นี้</span>
-              </div>
-            )}
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center gap-2 w-full sm:w-auto">
-            <button
-              id="btn-refresh-data"
-              onClick={onRefresh}
-              disabled={isRefreshing}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-2xs hover:shadow-xs transition-all cursor-pointer disabled:opacity-50"
-              title="รีเฟรชข้อมูลจาก Sheet"
-            >
-              <RefreshCw className={`w-3.5 h-3.5 text-slate-600 ${isRefreshing ? 'animate-spin' : ''}`} />
-              <span>{isRefreshing ? 'กำลังซิงค์...' : 'รีเฟรชข้อมูล'}</span>
-            </button>
-
-            <button
-              id="btn-sheet-sync-settings"
-              onClick={onOpenSheetModal}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow-2xs hover:shadow-xs transition-all cursor-pointer"
-            >
-              <Database className="w-3.5 h-3.5" />
-              <span>จัดการ Sheet / นำเข้า</span>
-            </button>
-          </div>
+        {/* Right: Quick Action Controls */}
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            id="btn-refresh-data"
+            onClick={onRefresh}
+            disabled={isRefreshing}
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-2xs hover:shadow-xs transition-all cursor-pointer disabled:opacity-50"
+            title="รีเฟรชข้อมูล"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 text-slate-600 ${isRefreshing ? 'animate-spin' : ''}`} />
+            <span>{isRefreshing ? 'กำลังซิงค์...' : 'รีเฟรชข้อมูล'}</span>
+          </button>
         </div>
       </div>
     </header>
