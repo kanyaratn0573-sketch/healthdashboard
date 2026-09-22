@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, RotateCcw, Filter, MapPin, Users, Calendar, AlertTriangle } from 'lucide-react';
+import { RotateCcw, Filter, MapPin, Users, Calendar, AlertTriangle } from 'lucide-react';
 import { FilterState, PingPongColor, RiskZone } from '../types';
 
 interface FilterControlsProps {
@@ -65,26 +65,8 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
       </div>
 
       {/* Main Filter Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-        {/* 1. Search Query */}
-        <div className="space-y-1.5">
-          <label htmlFor="filter-search-input" className="block text-xs font-semibold text-slate-700">
-            ค้นหาชื่อ หรือ รหัสบุคคล
-          </label>
-          <div className="relative">
-            <input
-              id="filter-search-input"
-              type="text"
-              placeholder="ค้นหารหัส HN, พื้นที่..."
-              value={filters.searchQuery}
-              onChange={(e) => onFilterChange({ searchQuery: e.target.value })}
-              className="w-full pl-9 pr-3.5 py-2 text-sm bg-slate-50/70 focus:bg-white rounded-xl border border-slate-200 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all outline-hidden text-slate-800 placeholder:text-slate-400"
-            />
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
-          </div>
-        </div>
-
-        {/* 2. Gender (เพศ) */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+        {/* 1. Gender (เพศ) */}
         <div className="space-y-1.5">
           <label htmlFor="filter-gender-select" className="block text-xs font-semibold text-slate-700 flex items-center gap-1">
             <Users className="w-3.5 h-3.5 text-pink-500" />
