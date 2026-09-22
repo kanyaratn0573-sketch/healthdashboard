@@ -152,7 +152,7 @@ export const DataTable: React.FC<DataTableProps> = ({ records, onSelectRecord })
             <input
               id="table-person-search"
               type="text"
-              placeholder="ค้นหารหัส HN หรือ พื้นที่คัดกรอง..."
+              placeholder="ค้นหาพื้นที่ หรือ เงื่อนไข..."
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value);
@@ -259,12 +259,6 @@ export const DataTable: React.FC<DataTableProps> = ({ records, onSelectRecord })
             <tr className="bg-gradient-to-r from-slate-100 via-pink-50/40 to-slate-100 text-slate-700 font-semibold border-b border-slate-200">
               <th className="py-3 px-3 w-16 text-center">แถบสี</th>
               <th
-                onClick={() => handleSort('hn')}
-                className="py-3 px-3 cursor-pointer hover:bg-slate-200/50 transition-colors"
-              >
-                รหัส HN
-              </th>
-              <th
                 onClick={() => handleSort('gender')}
                 className="py-3 px-2.5 cursor-pointer hover:bg-slate-200/50 transition-colors text-center"
               >
@@ -317,7 +311,7 @@ export const DataTable: React.FC<DataTableProps> = ({ records, onSelectRecord })
           <tbody className="divide-y divide-slate-100">
             {pageItems.length === 0 ? (
               <tr>
-                <td colSpan={12} className="py-12 text-center text-slate-400">
+                <td colSpan={11} className="py-12 text-center text-slate-400">
                   <div className="flex flex-col items-center justify-center gap-2">
                     <Search className="w-8 h-8 text-slate-300" />
                     <p className="text-sm font-medium">ไม่พบรายชื่อหรือข้อมูลที่ตรงกับเงื่อนไขการค้นหา</p>
@@ -365,11 +359,6 @@ export const DataTable: React.FC<DataTableProps> = ({ records, onSelectRecord })
                           title={`แถบสี${item.riskZone}`}
                         />
                       </div>
-                    </td>
-
-                    {/* HN */}
-                    <td className="py-3 px-3 font-mono font-medium text-slate-700">
-                      {item.hn}
                     </td>
 
                     {/* Gender */}
